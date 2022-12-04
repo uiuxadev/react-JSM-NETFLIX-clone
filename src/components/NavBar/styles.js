@@ -22,13 +22,11 @@ export default makeStyles((theme) => ({
   drawer: {
     [theme.breakpoints.up('sm')]: {
       display: drawerWidth, // to set a constant width
-      flexZShrink: 0,
+      flexShrink: 0,
     },
   },
   drawerPaper: {
-    [theme.breakpoints.up('sm')]: {
-      width: drawerWidth,
-    },
+    width: drawerWidth,
   },
   linkButton: {
     '&:hover': {
