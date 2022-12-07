@@ -3,6 +3,8 @@ import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
 // import { ClassNames } from '@emotion/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import { useGetGenresQuery } from '../../services/TMDB';
 import useStyles from './styles';
 import genreIcons from '../../assets/genres';
@@ -17,11 +19,13 @@ const redLogo = 'https://fontmeme.com/permalink/221202/2fa6f5b639fa69d48b505b5e7
 const blueLogo = 'https://fontmeme.com/permalink/221202/d91af8624427238ff2d7820c09238425.png';
 
 const Sidebar = ({ setMobileOpen }) => {
+  const { genreOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
+  const dispatch = useDispatch();
 
-  console.log('useGetGenresQuery', data);
+  console.log('selectGenreOrCategory', genreOrCategoryName);
 
   return (
     <>
@@ -38,7 +42,7 @@ const Sidebar = ({ setMobileOpen }) => {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
+            <ListItem onClick={() => dispatch(selectGenreOrCategory(value))} button>
               <ListItemIcon>
                 <img src={genreIcons[label.toLowerCase()]} alt="" className={classes.genreImages} height={30} />
               </ListItemIcon>
