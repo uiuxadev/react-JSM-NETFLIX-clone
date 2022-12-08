@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
-
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import { useGetMoviesQuery } from '../../services/TMDB';
 import { MovieList } from '..';
 
-const Movie = () => {
-  const { data, error, isFetching } = useGetMoviesQuery();
+const Movies = () => {
+  const [page, setPage] = useState(1);
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName });
 
   // if loading
   if (isFetching) {
@@ -38,4 +40,4 @@ const Movie = () => {
   );
 };
 
-export default Movie;
+export default Movies;

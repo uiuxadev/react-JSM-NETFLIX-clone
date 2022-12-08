@@ -14,7 +14,12 @@ export const tmdbApi = createApi({
 
     // GET Movies by [Type]
     getMovies: builder.query({
-      query: () => `movie/popular?api_key?page=${page}&api_key=${tmdbApiKey}`,
+      query: ({ genreIdOrCategoryName, page }) => {
+        if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
+
+        }
+        return `movie/popular?api_key?page=${page}&api_key=${tmdbApiKey}`,
+      },
     }),
   }),
 });
