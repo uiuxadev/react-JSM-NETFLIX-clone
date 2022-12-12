@@ -15,10 +15,17 @@ export const tmdbApi = createApi({
     // GET Movies by [Type]
     getMovies: builder.query({
       query: ({ genreIdOrCategoryName, page }) => {
+        // popular, top_rated, upcoming -> string
+        // GET Movies by Category
         if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'string') {
-
+          return `movie/${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
         }
-        return `movie/popular?api_key?page=${page}&api_key=${tmdbApiKey}`,
+        // GET Movies by Genre
+        if (genreIdOrCategoryName && typeof genreIdOrCategoryName === 'number') {
+          return `discover/movie&with_genres=${genreIdOrCategoryName}?page=${page}&api_key=${tmdbApiKey}`;
+        }
+        // GET Popular Movies (At start, any categories are selected)
+        return `movie/popular?api_key?page=${page}&api_key=${tmdbApiKey}`;
       },
     }),
   }),

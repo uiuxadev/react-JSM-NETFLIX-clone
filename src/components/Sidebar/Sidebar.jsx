@@ -16,7 +16,7 @@ const categories = [
 ];
 
 const redLogo = 'https://fontmeme.com/permalink/221202/2fa6f5b639fa69d48b505b5e79a5fd5c.png';
-const blueLogo = 'https://fontmeme.com/permalink/221202/d91af8624427238ff2d7820c09238425.png';
+const blueLogo = 'https://fontmeme.com/permalink/221202/d91af8624427238ff2d7820 c09238425.png';
 
 const Sidebar = ({ setMobileOpen }) => {
   const { genreOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
@@ -60,7 +60,7 @@ const Sidebar = ({ setMobileOpen }) => {
           </Box>
         ) : data.genres.map(({ name, id }) => (
           <Link key={name} className={classes.links} to="/">
-            <ListItem onClick={() => {}} button>
+            <ListItem onClick={() => dispatch(selectGenreOrCategory(id))} button>
               <ListItemIcon>
                 <img src={genreIcons[name.toLowerCase()]} alt="" className={classes.genreImages} height={30} />
               </ListItemIcon>
