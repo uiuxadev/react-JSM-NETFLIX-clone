@@ -6,9 +6,12 @@ import { useGetMoviesQuery } from '../../services/TMDB';
 import { MovieList } from '..';
 
 const Movies = () => {
+  // to update a page
   const [page, setPage] = useState(1);
+  // fetch movie id or category name
   const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
-  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName });
+  // give movie id or category name to useGetMoviesQuery
+  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page });
 
   // if loading
   if (isFetching) {
