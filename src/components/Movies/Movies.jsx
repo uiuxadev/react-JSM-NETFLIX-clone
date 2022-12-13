@@ -9,9 +9,9 @@ const Movies = () => {
   // to update a page
   const [page, setPage] = useState(1);
   // fetch movie id or category name
-  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
+  const { genreIdOrCategoryName, searchQuery } = useSelector((state) => state.currentGenreOrCategory);
   // give movie id or category name to useGetMoviesQuery
-  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page });
+  const { data, error, isFetching } = useGetMoviesQuery({ genreIdOrCategoryName, page, searchQuery });
 
   // if loading
   if (isFetching) {
