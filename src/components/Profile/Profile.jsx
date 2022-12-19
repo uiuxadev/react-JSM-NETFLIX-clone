@@ -17,7 +17,6 @@ const Profile = () => {
   // Get access to profile name or id from redux state
   // display in the profile component
   const { user } = useSelector(userSelector);
-  console.log(user);
 
   return (
     <Box>
