@@ -1,15 +1,20 @@
 import { makeStyles } from '@mui/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   root: {
     display: 'flex',
-    heigh: '100%',
+    height: '100%',
   },
   toolbar: {
-    height: '70x',
+    height: '70px',
   },
   content: {
     flexGrow: '1',
     padding: '2em',
+    width: '100%',
+    // To prevent characters from being placed below the sidebar.
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: '240px',
+    },
   },
 }));

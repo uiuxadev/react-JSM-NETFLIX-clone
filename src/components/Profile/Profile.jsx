@@ -17,6 +17,7 @@ const Profile = () => {
   // Get access to profile name or id from redux state
   // display in the profile component
   const { user } = useSelector(userSelector);
+  console.log(user);
 
   return (
     <Box>
@@ -29,10 +30,7 @@ const Profile = () => {
       {!favoriteMovies?.results?.length
         ? <Typography variant="h5">Add favorites or watchlist some movies to see them here!</Typography>
         : (
-          <Box>
-            {/* <RatedCards title="Favorite Movies" data={favoriteMovies} />
-            <RatedCards title="Watchlist" data={watchlistMovies} /> */}
-          </Box>
+          <Box />
         )}
     </Box>
   );
