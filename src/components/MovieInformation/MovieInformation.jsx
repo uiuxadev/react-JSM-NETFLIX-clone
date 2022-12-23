@@ -9,8 +9,8 @@ import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import useStyles from './styles';
 import { useGetMovieQuery, useGetRecommendationsQuery, useGetListQuery } from '../../services/TMDB';
 import genreIcons from '../../assets/genres';
-// import { MovieList } from '..';
-// import { userSelector } from '../../features/auth';
+import { MovieList } from '..';
+import { userSelector } from '../../features/auth';
 
 const MovieInformation = () => {
   // console.log('movie information');
@@ -18,6 +18,7 @@ const MovieInformation = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { data, isFetching, error } = useGetMovieQuery(id);
+  const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id });
 
   const isMovieFavorited = true;
   const isMovieWatchlisted = true;
@@ -32,7 +33,8 @@ const MovieInformation = () => {
     setIsMovieFavorited((prev) => !prev);
   };
 
-  console.log({ isMovieWatchlisted });
+  console.log({ recommendations });
+  console.log('test');
 
   const addToWatchlist = async () => {
     await axios.post(`https://api.themoviedb.org/3/account/${user.id}/watchlist?api_key=${process.env.REACT_APP_TMDB_KEY}&session_id=${localStorage.getItem('session_id')}`, {
@@ -169,8 +171,16 @@ const MovieInformation = () => {
 
             </div>
           </Grid>
-
         </Grid>
+        <Box marginTop="5rem" width="100%">
+          <Typography variant="h3" gutterBottom align="center">
+            You might also like
+          </Typography>
+          {recommendations
+            ? <MovieList movies={recommendations} numberOfMovies={12} />
+            : <Box>Sorry, nothing was found.</Box>}
+        </Box>
+
       </Grid>
     </>
   );
