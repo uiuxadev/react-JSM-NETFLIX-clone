@@ -17,6 +17,8 @@ const MovieInformation = () => {
   const { id } = useParams();
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+
   const { data, isFetching, error } = useGetMovieQuery(id);
   const { data: recommendations, isFetching: isRecommendationsFetching } = useGetRecommendationsQuery({ list: '/recommendations', movie_id: id });
 
@@ -181,6 +183,24 @@ const MovieInformation = () => {
             : <Box>Sorry, nothing was found.</Box>}
         </Box>
 
+        {console.log(data?.videos.results[0].key)}
+        <Modal
+          closeAfterTransition
+          className={classes.modal}
+          open={open}
+          onClose={() => setOpen(false)}
+        >
+          {data?.videos?.results?.length > 0 && (
+          <iframe
+            autoPlay
+            className={classes.video}
+            frameBorder="0"
+            title="Trailer"
+            src={`https://www.youtube.com/embed/${data.videos.results[0].key}`}
+            allow="autoplay"
+          />
+          )}
+        </Modal>
       </Grid>
     </>
   );
