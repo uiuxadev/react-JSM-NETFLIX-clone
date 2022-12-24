@@ -3,7 +3,7 @@ import { Box, CircularProgress, useMediaQuery, Typography } from '@mui/material'
 import { useSelector } from 'react-redux';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import { useGetMoviesQuery } from '../../services/TMDB';
-import { MovieList } from '..';
+import { MovieList, Pagination } from '..';
 
 const Movies = () => {
   // to update a page
@@ -39,7 +39,10 @@ const Movies = () => {
   if (error) return 'An error has occured.';
 
   return (
-    <MovieList movies={data} />
+    <>
+      <MovieList movies={data} />
+      <Pagination currentPage={page} setPage={setPage} totalPages={data.total_pages} />
+    </>
   );
 };
 
