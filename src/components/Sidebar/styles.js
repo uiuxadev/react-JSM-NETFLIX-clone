@@ -16,6 +16,6 @@ export default makeStyles((theme) => ({
   },
   genreImage: {
     // https://developer.mozilla.org/ja/docs/Web/CSS/filter-function/invert
-    filter: theme.palette.mode === 'dark' ? 'dark' : 'invert(1)',
+    filter: theme.palette.mode === 'dark' && 'invert(1)',
   },
 }));

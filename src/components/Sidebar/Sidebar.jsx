@@ -15,8 +15,8 @@ const categories = [
   { label: 'Upcoming', value: 'upcoming' },
 ];
 
-const redLogo = 'https://fontmeme.com/permalink/221202/2fa6f5b639fa69d48b505b5e79a5fd5c.png';
-const blueLogo = 'https://fontmeme.com/permalink/221202/d91af8624427238ff2d7820 c09238425.png';
+const redLogo = 'https://fontmeme.com/permalink/221225/b580ce1ed8d969c47f7b6ffd41dc18d5.png';
+const blueLogo = 'https://fontmeme.com/permalink/221225/feb783771bbccec83f089e96eda0add4.png';
 
 const Sidebar = ({ setMobileOpen }) => {
   const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
@@ -31,7 +31,8 @@ const Sidebar = ({ setMobileOpen }) => {
         <img
           className={classes.image}
           //   https://mui.com/material-ui/customization/dark-mode/
-          src={theme.palette.mode === 'light' ? redLogo : blueLogo}
+          src={theme.palette.mode === 'light' ? blueLogo : redLogo}
+          // src={theme.palette.mode === 'light' ? redLogo : blueLogo}
           alt="NETFLIX clone logo"
         />
       </Link>
@@ -42,7 +43,7 @@ const Sidebar = ({ setMobileOpen }) => {
           <Link key={value} className={classes.links} to="/">
             <ListItem onClick={() => dispatch(selectGenreOrCategory(value))} button>
               <ListItemIcon>
-                <img src={genreIcons[label.toLowerCase()]} alt="" className={classes.genreImages} height={30} />
+                <img src={genreIcons[label.toLowerCase()]} alt="" className={classes.genreImage} height={30} />
               </ListItemIcon>
               <ListItemText primary={label} />
             </ListItem>
@@ -60,7 +61,7 @@ const Sidebar = ({ setMobileOpen }) => {
           <Link key={name} className={classes.links} to="/">
             <ListItem onClick={() => dispatch(selectGenreOrCategory(id))} button>
               <ListItemIcon>
-                <img src={genreIcons[name.toLowerCase()]} alt="" className={classes.genreImages} height={30} />
+                <img src={genreIcons[name.toLowerCase()]} alt="" className={classes.genreImage} height={30} />
               </ListItemIcon>
               <ListItemText primary={name} />
             </ListItem>
