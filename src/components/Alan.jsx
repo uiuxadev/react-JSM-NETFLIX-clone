@@ -15,7 +15,7 @@ const useAlan = () => {
   useEffect(() => {
     alanBtn({
       key: '83da7b0f465ad178949a123127f222622e956eca572e1d8b807a3e2338fdd0dc/stage',
-      onCommand: ({ command, mode, genres, genreOrCategory }) => {
+      onCommand: ({ command, mode, genres, genreOrCategory, query }) => {
         if (command === 'chooseGenre') {
           const foundGenre = genres.find((g) => g.name.toLowerCase() === genreOrCategory.toLowerCase());
 
@@ -40,6 +40,8 @@ const useAlan = () => {
           localStorage.clear();
           history.push('/');
         //   window.location.href = '/';
+        } else if (command === 'search') {
+          dispatch(searchMovie(query));
         }
       },
     });
